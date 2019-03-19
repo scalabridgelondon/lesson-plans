@@ -89,3 +89,16 @@ I.e. put the leaves into the companion object.
 ### Project Work
 
 Discuss data structures that the students' project will require. How can these be modelled as algebraic data types?
+
+
+### More Examples
+
+An `IntList` is either
+- a `Pair` containing a `head` that is an `Int` and a tail that is an `IntList` OR
+- `Empty`
+
+Implement this ADT.
+
+You can also do binary trees, `Option` (for a fixed type, as we don't have generic types yet), etc.
+
+Also fun (and possibly mind bending) are to implement grammars that describe DSLs. E.g. a grammar for creating sentences, or images, or whatever is of interest to the students. This will probably tie into their project work.
