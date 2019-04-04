@@ -87,6 +87,37 @@ As you can see from the above, our function `sayHi` works with any implementor o
 
 ### Parametric polymorphism
 
+[Parametric polymorphism](https://en.wikipedia.org/wiki/Parametric_polymorphism) is a way to manage different types identically whithout relying on the type. In some languages this is implemented as *generics*
+
+You have probably used this already. If you use `List` in Scala, you are able to define lists as `List[Int]` or `List[String]`. In Scala `List` is a `List[A]` where `A` is a type you define when using it. As a consequence, if you implement something like:
+
+```scala
+def listLength[A](l: List[A]): Int = l.length
+```
+
+This function will work with any `List` you provide, be it a `List[Int]`, `List[String]`, or other. 
+
+{:prompt:} implement another function that operates over a type that uses parametric polymorphism, like `Set[A]`
+
+{:teacher:} point out how this is similar to generics in other languages, but also let them know this is more powerful as it can enable advance techniques via *implicits* and *hkt* (no need to demonstrate, just let them understand these are generics++)
+
+Parametric polymorphism allows us to create very generic functions and it's a very important tool in FP, as it allows us to create functions that apply to many contexts and, at the same time, have a very generic and safe implementation.
+
+To elaborate a bit more on this, and understand why *parametric polymorphism* is so important, try to implement the following functions:
+
+```scala
+def identity(elem: String): String = ???
+
+def identity[A](elem: A): A = ???
+```
+{:prompt:} Try to implement them in as many ways as possible. Don't use `null` or *exceptions* though.
+
+For the first implementation of `identity` usually you would return `elem`, but you could also return a completely new `String`, or a `String` generated from `elem` by appending or removing characters. All of them would compile, and you'd need your tests to detect any mistakes.
+
+But the second implementation has no flexibility. You don't know what `A` is. It could be `Int`, `Option[String]`, or a custom type. You don't know how to instantiate a new `A` or how to modify it. This means that only one implementation will compile: returning `elem` (note we are ignoring side-effects and `null`)
+
+{:teacher:} Point out how `null` or `exceptions` break this rule of *only one implementation based on type definition* and how this shows that these kind of side effects/unexpected behaviour is bad. We don't like suprises.
+
 ## Pattern matching
 
 Pattern matching is a way to work with ADT, making decisions based on the shape of the data. This is different than calling methods or accessing fields on a type, and more powerful at the same time.
