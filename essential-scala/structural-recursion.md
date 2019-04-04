@@ -57,6 +57,33 @@ This is a simple example just to understand the concept, in later lessons we wil
 
 ### Subtyping polymorphism
 
+[Subtyping](https://en.wikipedia.org/wiki/Subtyping) is a type of polymorphism in which we refer to a type that shares a common interface with many other types. In OO this is usually achieved by inheritance. In Scala we favour composition via traits.
+
+```scala
+trait HasName {
+  def name: String
+}
+class Person(name: String, age: Int) extends HasName
+class Pet(name: String) extends HasName
+```
+
+In this hierarchy we have a parent trait `HasName` that provides an abstract method `name`. All classes that implement that trait will have to implement that method too. This subtyping allow us to implement functions that target the trait but will work with any class implenting it:
+
+```scala
+def sayHi(hasName: HasName): String = s"Hi, ${hasName.name}!"
+
+val person = new Person("Ewa", 25)
+val pet = new Pet("Maple")
+
+sayHi(person) // Hi, Ewa!
+sayHi(pet) // Hi, Maple!
+```
+
+As you can see from the above, our function `sayHi` works with any implementor of `HasName` and has access to any methods defined in the trait. It is important to note that in the implementation we don't have access to methods not defined in the trait, so (for example) we can't access the `age` field of `Person`.
+
+{:prompt:} create a hierarchy using a trait with a method `def forPrinting: String` that will return a `String` representation of the implementor. Implement a function that receives the trait and uses `forPrinting` to print the representation to console.
+
+{:teacher:} highlight how the ADT they created last lesson are a type of subtyping
 
 ### Parametric polymorphism
 
