@@ -136,10 +136,10 @@ If you are used to OO, you could imagine an implementation to solve this problem
 
 ```scala
 sealed trait Attendee {
-   val timeAtLocation: LocalDateTime
+   val arrivalTime: LocalDateTime
 }
-final case class Student(name: String, goal: String, timeAtLocation: LocalDateTime) extends Attendee
-final case class Mentor(name: String, yearsOfExperience: Int, timeAtLocation: LocalDateTime) extends Attendee
+final case class Student(name: String, goal: String, arrivalTime: LocalDateTime) extends Attendee
+final case class Mentor(name: String, yearsOfExperience: Int, arrivalTime: LocalDateTime) extends Attendee
 ```
 
 but this has some unwanted consequences. We must provide the time when we create an instance of `Attendee` and we will have to modify existing code currently using these `case classes`. And what about time for multiple locations? 
@@ -147,13 +147,13 @@ but this has some unwanted consequences. We must provide the time when we create
 A more FP solution would be to implement the following function:
 
 ```scala
-def timeAtLocation(attendee: Attendee): LocalDateTime = ???
+def arrivalTime(attendee: Attendee): LocalDateTime = ???
 ```
 
-which we can call for each `Attendee` for whom we want to check the `timeAtLocation`. But, how do we know if an `Attendee` is an `Student` or a `Mentor`? If you are used to OO you may be thinking on `casting` the type (if you don't know what this means, that's good as it is not a good practice in Scala!). In Scala the solution is `Pattern Matching`:
+which we can call for each `Attendee` for whom we want to check the `arrivalTime`. But, how do we know if an `Attendee` is an `Student` or a `Mentor`? If you are used to OO you may be thinking on `casting` the type (if you don't know what this means, that's good as it is not a good practice in Scala!). In Scala the solution is `Pattern Matching`:
 
 ```scala 
-def timeAtLocation(attendee: Attendee): LocalDateTime = attendee match {
+def arrivalTime(attendee: Attendee): LocalDateTime = attendee match {
    case Student(name, goal) =>  LocalDateTime.of(2019, Month.APRIL, 4, 18, 00)
    case Mentor(name, yearsOfExperience) => LocalDateTime.of(2019, Month.APRIL, 4, 17, 30)
 }
@@ -162,7 +162,7 @@ def timeAtLocation(attendee: Attendee): LocalDateTime = attendee match {
 By using the `match` and `case` keyword we create a piece of code that changes behaviour based on the `shape` of the ADT we provide to the function. Note that we have access to the fields in the ADT, so we can use them in our logic. For example, we could print to console details about the `Attendee` as we make the decision: 
 
 ```scala 
-def timeAtLocation(attendee: Attendee): LocalDateTime = attendee match {
+def arrivalTime(attendee: Attendee): LocalDateTime = attendee match {
    case Student(name, goal) =>  
       println(s"Student: $name - $goal will be there at 18:00")
       LocalDateTime.of(2019, Month.APRIL, 4, 18, 00)
