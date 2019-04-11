@@ -19,6 +19,63 @@ In today's lesson we will start looking at *structural recursion*. Later we will
 
 ## Structural Recursion
 
+Structural recursion refers to a recursive function that handles our structure (ADT). We use them when we want to transform our ADT into some other type. For example, we could be using a `sum type` to define an enumeration:
+
+```scala
+sealed trait DiscountType
+case object NoDiscount extends DiscountType
+case object MinorDiscount extends DiscountType
+case object MajorDiscount extends DiscountType
+```
+and at some point we want to convert that to a number we can use to calculate the discount. Structural recursion gives us patterns on how to do this. Transforming an ADT to another type is a common operation, which means these are important and widely used patterns.
+
+There are two ways to implement structural recursion:
+
+ - polymorphism (see *extensions* section)
+ - pattern matching (see next section)
+ 
+{:teacher:} Polymorphism is considered an extension, advanced topic due to potential confussion. Focus initially on pattern matching. 
+
+If `A` is a `B` or `C` (`sum type`), the skeleton for *pattern matching* (see next section for more detail) is
+
+```scala
+sealed trait A {
+  def someMethod: SomeType =
+    this match {
+      case B => ???
+      case C => ???
+    }
+}
+final case class B() extends A
+final case class C() extends A
+```
+
+The skeleton for *polymorphism* (see *extensions*) is:
+
+```scala
+sealed trait A {
+  def someMethod: SomeType
+}
+final case class B() extends A {
+  def someMethod: SomeType = ???
+}
+final case class C() extends A {
+  def someMethod: SomeType = ???
+}
+```
+
+You don't even need to understand how pattern matching works, for example, to implement this. Just follow the template. (Though understanding is useful.)
+
+In both templates, implementing the `???` parts of the structural recursion is usually a case of *following the types*, that is, adding code that has the type the compiler expects. Most of the time following the types gives you the code you want.
+
+{:teacher:} A good moment to talk about the *it compiles* and *follow the types* approach of typed languages?
+
+{:prompt:} Implement the pattern matching template on one of the ADT you created in the last session. Your aim is to convert those ADT to a `Int`. Don't worry about understanding all the elements fully, we will describe them in detail in the next section
+
+{:teacher:} We want the student to understand that this is a pattern they can use regularly, it can be used as introduction for the *pattern match* section.
+
+The point of all this is that you can write this code in a completely systematic and repeatable way, just like you can implement algebraic data types in a completely systematic and repeatable way. The code follows directly from the structure of the data (your ADT). Fix the structure of the data and both the code defining the data and the skeleton of any code to transform that data follows immediately from the structure.
+
 
 ## Pattern matching
 
