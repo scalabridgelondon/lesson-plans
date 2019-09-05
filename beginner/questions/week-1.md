@@ -80,8 +80,8 @@ object SomethingElse {
 ```
 
 How is the name `Image` brought into scope?
-What names are in scope at the point <A>?
-What names are in scope at the point <B>?
+What names are in scope at the point `<A>`?
+What names are in scope at the point `<B>`?
 What strategies could you use to solve this question?
 
 
