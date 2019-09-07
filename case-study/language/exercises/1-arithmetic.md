@@ -22,8 +22,27 @@ Our very first interpreter will parse numbers and evaluate them to ... the numbe
 Our next step is to extend our language with arithmetic expressions. To start with we'll just allow addition and subtraction of literals. More formally we'll have the grammar
 
 Expr :=
-    Literal  # This is what we've already implemented
+	Literal  # This is what we've already implemented
   | Literal + Literal
   | Literal * Literal
 
 At the moment you don't need to worry about precedence.
+
+## Questions
+
+
+1. What is a program? What is an interpreter?
+
+
+
+2. Without parsing, what would the expression `1 + 2 * 56 + 8` be represented as as an `Expr`?
+   Is it what you would expect?
+
+
+
+3. Discuss the similarities between the signature and structure of `prettyPrint` and `eval`.
+   Could you call `prettyPrint` an interpreter? Why or why not?
+
+
+
+4. Based on the answers to `2.` and `3.` how would you conceptually deal with precedence?
