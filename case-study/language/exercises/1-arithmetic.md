@@ -34,13 +34,18 @@ At the moment you don't need to worry about precedence.
 1. What is a program? What is an interpreter?
 
 
-
-2. Without parsing, what would the expression `1 + 2 * 56 + 8` be represented as as an `Expr`?
-   Is it what you would expect?
+2. Without running the program, what would the AST of the expression `1 + 2 * 56 + 8`? Is it what you would expect?
 
 
+3. Write a function `prettyPrint` which takes in an `Expr` such as `Add(Literal(1), Literal(2))` and returns the `String` result `1 + 2`.
+   What is the result of the following snippet?
+   ```scala
+	   val expr = "1 + 2"
+	   expr == prettyPrint(parse(expr))
+   ```
+   Will this always be true?
 
-3. Discuss the similarities between the signature and structure of `prettyPrint` and `eval`.
+4. Discuss the similarities between the signature and structure of `prettyPrint` and `eval`.
    Could you call `prettyPrint` an interpreter? Why or why not?
 
 
