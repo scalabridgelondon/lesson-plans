@@ -1,4 +1,4 @@
-# Notes for Week 1 Questions
+# Notes for Beginner Week 1 Questions
 
 
 1. This questions ensures they have basic concepts correct. They'll need these concepts to scafold the rest of the concepts we'll learn.
