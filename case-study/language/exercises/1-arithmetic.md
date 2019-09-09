@@ -22,8 +22,32 @@ Our very first interpreter will parse numbers and evaluate them to ... the numbe
 Our next step is to extend our language with arithmetic expressions. To start with we'll just allow addition and subtraction of literals. More formally we'll have the grammar
 
 Expr :=
-    Literal  # This is what we've already implemented
+	Literal  # This is what we've already implemented
   | Literal + Literal
   | Literal * Literal
 
 At the moment you don't need to worry about precedence.
+
+## Questions
+
+
+1. What is a program? What is an interpreter?
+
+
+2. Without running the program, what would the AST of the expression `1 + 2 * 56 + 8`? Is it what you would expect?
+
+
+3. Write a function `prettyPrint` which takes in an `Expr` such as `Add(Literal(1), Literal(2))` and returns the `String` result `1 + 2`.
+   What is the result of the following snippet?
+   ```scala
+	   val expr = "1 + 2"
+	   expr == prettyPrint(parse(expr))
+   ```
+   Will this always be true?
+
+4. Discuss the similarities between the signature and structure of `prettyPrint` and `eval`.
+   Could you call `prettyPrint` an interpreter? Why or why not?
+
+
+
+4. Based on the answers to `2.` and `3.` how would you conceptually deal with precedence?
