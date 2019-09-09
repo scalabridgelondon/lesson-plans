@@ -58,7 +58,7 @@ object TheAnswer {
 ```
 
 
-8. Write a program that draws three circles in a row. That is, a circle beside a circle beside a circle. Make each circle a different color.
+8. Write a program that draws four circles in a square pattern. Make each circle a different color.
 
 Did you make any errors writing this code? What strategies did you use to fix your errors?
 
