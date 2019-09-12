@@ -31,7 +31,7 @@ In groups we'll answer the following questions:
 `1/0`
 
 
-5. We'll make many mistakes when programming. We need to develop strategies to correct these mistakes. We'll start by looking at three questions. Who could you answer these questions? Are there general strategies here?
+5. We'll make many mistakes when programming. We need to develop strategies to correct these mistakes. We'll start by looking at three questions. How could you answer these questions? Are there any general strategies here?
 
 - Where is the bathroom?
 - What do the angles inside a triangle sum to?
