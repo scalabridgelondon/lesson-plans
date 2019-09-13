@@ -1,4 +1,4 @@
-# # Intermediate Week 2
+# Intermediate Week 2
 
 ## Reading
 
