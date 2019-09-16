@@ -2,10 +2,10 @@ import sbt._
 
 object Dependencies {
   // Library Versions
-  val catsVersion       = "1.6.1"
-  val catsEffectVersion = "1.3.1"
+  val catsVersion       = "2.0.0"
+  val catsEffectVersion = "2.0.0"
   val fastParseVersion  = "2.1.3"
-  val miniTestVersion   = "2.6.0"
+  val miniTestVersion   = "2.7.0"
   val hedgehogVersion   = "49859b13f023a70937c6e4ee9770fb84f63bdcc5" // dunno what a good version is
 
   // Libraries

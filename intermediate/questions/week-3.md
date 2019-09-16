@@ -55,7 +55,7 @@ Show your parser works by creating a regular expression that matches a number: o
 What strategy would you use to implement `Option`? Is this what is used in the standard library?
 
 
-5. Implement a method `match` that returns an `Option` containing a `String`. (We write this type `Option[String]`). If we match a portion of a `String` we return that portion (wrapped in `Some`). Otherwise we return `None`.
+5. Implement a method `parse` that returns an `Option` containing a `String`. (We write this type `Option[String]`). If we match a portion of a `String` we return that portion (wrapped in `Some`). Otherwise we return `None`.
 
 What strategy should we use to implement this?
 
