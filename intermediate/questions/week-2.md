@@ -46,13 +46,14 @@ In Doodle there is a trait called `Reactor`. A `Reactor` allows us to define an 
 Create an animation, using a `Reactor` that displays a circle that moves in a circular orbit.
 
 - The initial state is the `Angle` `0.degrees`.
-- At each clock tick move the angle 5 degrees. Pro tip: you can add an `Angle` to an `Angle`.
-- To render the circle draw a circle at the point that is 300 pixels from the origin and rotated by the angle. Pro tip 1: You can create a point in Doodle with the syntax `Point(r, a)` where `r`, a `Double`, is the distance from the origin and `a` is an `Angle`. Pro tip 2: You can position a circle at a `Point` with the expression `Image.circle(10).at(point)`
+- At each clock tick move the angle 5 degrees. Tip: you can add an `Angle` to an `Angle`.
+- To render the circle draw a circle at the point that is 300 pixels from the origin and rotated by the angle. Pro tip 1: You can create a point in Doodle with the syntax `Point(r, a)` where `r`, a `Double`, is the distance from the origin and `a` is an `Angle`. Tip 2: You can position a circle at a `Point` with the expression `Image.circle(10).at(point)`
 
-Further pro tips:
+Further tips:
 
 - you'll have to implement some other methods in `Reactor`. You can choose what you do for them
 - here is how to create a `FiniteDuration`: `FiniteDuration(100, MILLISECONDS)`
+- Documentation for `Reactor` is at https://www.creativescala.org/doodle/api/doodle/reactor/reactor
 
 
 6. Algebraic data types are really really really important (really!) What is an algebraic data type at a *conceptual* level? How do we implement an algebraic data type in Scala? (Do you know any other languages that support algebraic data types?)
