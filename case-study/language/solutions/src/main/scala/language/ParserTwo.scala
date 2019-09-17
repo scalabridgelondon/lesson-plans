@@ -8,104 +8,97 @@ object ParserOne {
       case fail @ Failure(_) => fail
     }
   }
+  final case class Success[A](a: A, remaining: String) extends Result[A]
+  final case class Failure(remaining: String) extends Result[Nothing]
 
-  case class Success[A](a: A, remaining: String) extends Result[A]
-  case class Failure(remaining: String) extends Result[Nothing]
+  sealed trait Parser[A] {
+    import Parser._
 
-  final class Parser[A](f: String => Result[A]) {
-    def parse(text: String): Result[A] = f(text)
-    def map[B](f: A => B): Parser[B] = {
-      new Parser(remaining => this.f(remaining).map(f))
-    }
+    def parse(text: String): Result[A] =
+      this match {
+        case Text(v) =>
+          if(text.startsWith(v)) Success(v, text.substring(v.length))
+          else Failure(text)
 
-    def combine[B, C](parser: => Parser[B])(f: (A, B) => C): Parser[C] = {
-      new Parser(remaining => this.parse(remaining) match {
-        case Success(a, remaining) => parser.parse(remaining).map(b => f(a, b))
-        case fail @ Failure(_) => fail
-      })
-    }
+        case End =>
+          if(text.isEmpty) Success((), text)
+          else Failure(text)
 
-    def combine[B, C, D](parserB: => Parser[B], parserC: => Parser[C])(f: (A, B, C) => D): Parser[D] = {
-      new Parser(remaining => this.parse(remaining) match {
-        case Success(a, remaining) => parserB.parse(remaining) match {
-          case Success(b, remaining) => parserC.parse(remaining).map(c => f(a, b, c))
-          case fail @ Failure(_) => fail
-        }
-        case fail @ Failure(_) => fail
-      })
-    }
+        case Map(s, f) => s.parse(text).map(f)
 
-    def *>[B](parser: Parser[B]): Parser[B] = {
-      this.combine(parser)((_, b) => b)
-    }
+        case Zip(l, r) =>
+          l.parse match {
+            case Success(a, r) => r.parse(r).map(b => (a, b))
+            case Failure(r) => Failure(r)
+          }
 
+        case Alternative(l, r) =>
+          l.parse(text) match {
+            case Success(a, r) => Success(a, r)
+            case Failure(_) => r.parse(text)
+          }
 
-    def <*[B](parser: Parser[B]): Parser[A] = {
-      this.combine(parser)((a, _) => a)
-    }
-
-    def or(parser: Parser[A]): Parser[A] = {
-      new Parser(remaining => this.parse(remaining) match {
-        case success @ Success(_, _) => success
-        case Failure(_) => parser.parse(remaining)
-      })
-    }
-
-    def optional: Parser[Option[A]] = {
-      new Parser(remaining => this.parse(remaining) match {
-        case Failure(_) => Success(None, remaining)
-        case success => success.map(Option(_))
-      })
-    }
-
-    def void: Parser[Unit] = {
-      this.map(_ => ())
-    }
-
-
-    def oneOrMore(f: (A, A) => A): Parser[A] = {
-      new Parser(remaining =>
-        this.parse(remaining) match {
-          case Success(a, remaining) =>
-            def go(rem: String, a: A): Success[A] = {
-              this.parse(rem) match {
-                case Success(aa, rem) => go(rem, f(a, aa))
-                case Failure(_) => Success(a, rem)
+        case Repeat(p, c) =>
+          p.parse(text) match {
+            case Success(a1, r1) =>
+              p.parse(r1) match {
+                case Success(a2, r2) => Success(c(a1, a2), r2)
+                case Failure(_) => Success(a1, r1)
               }
-            }
-            go(remaining, a)
-          case failure @ Failure(_) => failure
-        }
-      )
-    }
+            case Failure(r) => Failure(r)
+          }
+      }
 
+    def map[B](f: A => B): Parser[B] =
+      Map(this, f)
+
+    def zip[B](that: Parser[B]): Parser[(A,B)] =
+      Zip(this, that)
+
+    def or(that: Parser[A]): Parser[A] =
+      Alternative(this, that)
+
+    def repeat(combine: (A, A) => A): Parser[A] =
+      Repeat(this, combine)
+
+    // Derived methods ------------------------------------------------
+
+    def *>[B](that: Parser[B]): Parser[B] =
+      this.zip(that).map{ case (_, b) => b }
+
+    def <*[B](that: Parser[B]): Parser[A] =
+      this.zip(that).map{ case (a, _) => a }
+
+    def void: Parser[Unit] =
+      this.map(_ => ())
   }
 
   object Parser {
+    final case class Text(value: String) extends Parser[String]
+    final case object End extends Parser[Unit]
+    // Corresponds to Functor type class
+    final case class Map[A,B](source: Parser[A], f: A => B) extends Parser[B]
+    // Corresponds to Semigroupal type class
+    //
+    // Semigroupal makes this a GADT, instead of a standard ADT, as it has a
+    // concrete type on the RHS (the `extends Parser[(A,B)]` has a `Tuple2` in
+    // it, though the syntax does not make that explicit.)
+    final case class Zip[A,B](left: Parser[A], right: Parser[B]) extends Parser[(A,B)]
+    // Corresponds to SemigroupK type class
+    final case class Alternative[A](left: Parser[A], right: Parser[A]) extends Parser[A]
+    // The combine function corresponds to there being a Monoid instance for A
+    final case class Repeat[A](parser: Parser[A], combine: (A, A) => A) extends Parser[A]
 
-    def text(value: String): Parser[String] = {
-      new Parser(remaining => if(remaining.startsWith(value)) {
-        Success(value, remaining.substring(value.length))
-      } else {
-        Failure(remaining)
-      })
-    }
+    def text(value: String): Parser[String] =
+      Text(value)
 
-    val end: Parser[Unit] = {
-      new Parser(remaining => {
-        if(remaining.isEmpty) {
-          Success((), "")
-        } else {
-          Failure(remaining)
-        }
-      })
-    }
+    val end: Parser[Unit] = End
 
     val digits: Parser[Int] = (0 to 9)
       .map(_.toString)
       .map(Parser.text)
       .reduce((x, y) => x.or(y))
-      .oneOrMore(_ + _)
+      .repeat(_ ++ _)
       .map(_.toInt)
 
     // Expr is an algebraic data type
@@ -118,10 +111,11 @@ object ParserOne {
     val multiply: Parser[Unit] = text("*").void
 
     val literalExpr: Parser[Expr] = digits.map(Literal(_))
-    def expr: Parser[Expr] = (plusExpr.or(multiplyExpr).or(literalExpr)) <* end
-    def plusExpr: Parser[Expr] = literalExpr.combine(plus, expr)((a, _, b) => Add(a, b))
-    def multiplyExpr: Parser[Expr] = literalExpr.combine(multiply, expr)((a, _, b) => Multiply(a, b))
-
+    def expr: Parser[Expr] =
+      (plusExpr.or(multiplyExpr).or(literalExpr)) <* end
+    def plusExpr: Parser[Expr] =
+      (literalExpr <* plus).zip(expr).map{ case (a, b) => Add(a, b) }
+    def multiplyExpr: Parser[Expr] =
+      (literalExpr <* multiply).zip(expr).map{ case (a, b) => Multiply(a, b) }
   }
-
 }
