@@ -8,7 +8,31 @@ Your reading for this week is
 
 Doing the exercises in the book chapter is optional, but likely to be useful.
 
-In this week we're going to work on a slightly longer example than before.
+In this week we're going to work on a slightly longer example than before. We advise doing some work at home on this, as it will probably take longer than you have in class to complete.
+
+
+## What You Should Know By Now
+
+By now you should know a lot of Scala syntax, but more important from my point of view are strategies for constructing code. Here are the strategies you'll have covered so far:
+
+- General Problem Solving (week 1):
+  - Ask for help
+  - Reason from principles
+  - Run an experiment
+- Algebraic data types (week 2)
+- Structural recursion (week 3)
+
+The exercises this week may seem difficult but the majority of the code is a direct application of the above strategies.
+
+You will also need to know one more strategy that isn't covered in Essential Scala: Follow the Types. 
+
+Use this strategy when you have type signatures in place but none of the other strategies apply. Typically this is after applying structural recursion to get a skeleton where you must know complete the right hand sides.
+
+The strategy works as follows:
+
+- Work out what is the goal. This is usually determined by the return type.
+- Work out what is available to start with. This is usually 1) any values we've extracted via pattern matching 2) any method parameters and 3) methods on any of these values.
+- Work how to go from the starting point (what is available) to the goal. Use the types to guide you to what is a valid step in this process. E.g. if we start with an `Int`, we have a function `Int => String`, and the goal is a `String`, it is likely we should apply the function to the `Int` to get a value of our goal type.
 
 
 ## Questions
