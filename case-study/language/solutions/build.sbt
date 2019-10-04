@@ -11,7 +11,7 @@ lazy val root = (project in file(".")).
     resolvers += Resolver.url("bintray-scala-hedgehog",
                               url("https://dl.bintray.com/hedgehogqa/scala-hedgehog")
     )(Resolver.ivyStylePatterns),
-    testFrameworks += TestFramework("hedgehog.sbt.Framework"),
+    testFrameworks ++= Seq(TestFramework("hedgehog.sbt.Framework"), new TestFramework("minitest.runner.Framework")),
     libraryDependencies ++= Seq(
       Dependencies.catsCore,
       Dependencies.catsEffect,
