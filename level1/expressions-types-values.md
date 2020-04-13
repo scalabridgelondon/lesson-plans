@@ -56,6 +56,7 @@ So our model is this:
 
 Every expression has a **type**. Types describe a set of possible values that an expression can evaluate to. For example, the type of `1 + 1` is `Int`, which means that if `1 + 1` evaluates to a value it will be one of the approximately 4 billion values that the computer uses to represent integers.
 
+
 > How could an expression not evaluate to a value?
 
 *Difficult question as we haven't given the students enough information to come up with this on their own---but they might if they are creative. The answer is that if something goes wrong the expression may not evaluate to a value.*
@@ -68,7 +69,7 @@ A type is a property of an expression, not of a value. If you have used a "dynam
 
 > What is the type of `1/0`?
 
-*They should be able to reason about this (expressions have types) but could also check it empirically by running the program.*
+*They should be able to reason about this (expressions have types) but could also check it empirically by running the program.  Discuss this, but don't try to correct their answer.  We haven't yet explained methods*
 
 
 ## Problem Solving Strategies
@@ -102,7 +103,7 @@ Here are three general problem solving strategies:
 
 A literal is an expression that evaluates to itself.
 
-> Which of these is a literal expression?
+Consider:
 
 ```
 2
@@ -112,92 +113,120 @@ A literal is an expression that evaluates to itself.
 1 + 1
 ```
 
-Here is an example of a floating point literal
+> Which of these is a literal expression?
+*Hopefully, you'll get the answer 2.  If not, ask the student to evaluate both expressions*
 
-```
-0.1
-// res1: Double = 0.1
-```
 
-This literal is called a `Double`
-
-We can also write literal texy
+Text is also a literal expression.
 
 ```
 "To be fond of dancing"
 ```
 
-> What is the type of this literal?
+> What is the type of this literal?  How did you find this out?
 
-*Try and get your student to evaluate this expression in a repl and read the type*
-
-See Creative Scala Chapter 2
-
-Strings can also span several lines
-
-Suppose we want to write text that spans several lines.  We do this by using triple quotes.
-
-```
-```
-
-> What is the type of this literal?
-
-*Hopefully, they will evaluate it and find it is also a String*
-
-Strings are a sequence of characters.  Character literals are written in single quotes
-
-```
-'a'
-```
-
-Finally, booleans are true or false
-
-```
-true
-false
-```
+*Hopefully, your student will say this has the type String*
+*If not, try and get them to evaluate this expression in a repl and read the type*
 
 ## Objects and Method Calls
 
-All values are objects.  An object is a grouping of data and operations on data.
-
-
-> Is this an object?
-
-```
-2
-```
-
-> Is this an object?
-
-```
-1 + 1
-```
-
 The operations on an object are called it's methods.
 
-For example `toUpperCase`
+For example `toUpperCase` is an operation on strings.
+
+Methods are written with a `.` in front of them and `()`.  This is known as method call syntax.
 
 ```
-"Titan".toUpperCase
+"titan".toUpperCase
 ```
 
-> Is "Titan.toUpperCase" an object?
+> What does this expression evaluate to?  What type does it have?
 
-Method calls are expressions.  They evaluate to objects.  This means we can chain method valls together.
+*Hopefully, your student will say this evaluates to "Titan" has the type String*
 
+Methods can have arguments, also known as parameters
+
+```
+"hello".take(3)
+```
+
+In this example, `3` is an argument to the method `take`
+
+> What does this expression evaluate to?
+*Hopefully, they'll use the repl and get the answer "hel"*
+
+```
+"hello".take(2)
+```
+
+> What does this evaluate to?
+*Hopefully, they'll use the repl and get the answer "he"*
+*We're leading towards the idea that a method will evaluate to a different value depending on it's arguments*
+
+> Can you predict what `hello.take(4)` would evaluate to?  What is the meaning of the argument passed to `take`?
+*If they can't predict this, get them to evaluate it in the REPL*
+
+Method calls are expressions.  They evaluate to objects.  This means we can chain method calls together.
+
+```
+"hello".toUpperCase.take(3)
+```
+
+> What does this evaluate to?
+*This question is to check their understanding.  Don't go to deeply into models of execution (which happens first), at this point*
 
 ## Operator Notation in Scala
 
-See Creative Scala Chapter 2
+A method with one argument can be called with spaces.  This is known as infix notation.
 
-How do we explain `1 + 2`?
+You've already seen several of these
+
+```
+1 + 2
+```
+
+Consider
+
+```
+"hello" take 3
+```
+> Is this a valid Scala program?
+*If you get the answer 'no', encourage the student to evaluate this in the repl.  When the call succeeds, repeat the definition of infix notation*
+
+> Can you write it using `.` and `()` instead of space?
+*They might need some help here.  Once they've finished, reiterate the definition of method call sytnax*
+
+
+> Is `"hello".take(3)` the same as `"hello" take 3`?  Are these the same as `"hello".take(1 + 2)`?
+*`"hello".take(3)` and `"hello" take 3` are different notation for the same expression*
+*`"hello".take(1 + 2) is a different expression.  We're trying to get them to understand the difference between notation of expressions and expressions themselves*
+
+We can call `1+2` using method syntax
+
+```
+1.+(2)
+```
+
+> Write `2 / 4` using method syntax
+*This is to confirm their understanding*
+
+> Write 1 + 2 + 3 using method syntax
+*This is to confirm their understanding of method chaining*
+
+> Can you write `hello.take(3).take(2)` in infix notation?
+*This is to confirm their understanding of method chaining*
+
+> Why would you use one notation over the other?
+
+*If this is a group, try and get them to discuss which style they prefer*
+
+Programs are meant to be read by people, as well as evaluated by computers.  `1 + 2` tends to be easier to read than `1.+(2)`
 
 ## Types
 
 Types stop us from calling methods that don't exist.
 
-The type of an expression tells the compiler what methods can exist, and what they evaluate to.
+The type of an expression tells Scala what methods can exist, and what they evaluate to.
 
 Here are some examples:
 
@@ -205,18 +234,59 @@ Here are some examples:
 "Bronte" / "Austen"
 ```
 
-> What is the type of this expression?
+> What is the type of this expression?  What do you think this expression will evaluate to?
 
-*The expression doesn't have a type*
+*The expression doesn't have a type. By the same token, it can't be evaluated*
 
-> Come up with some examples of incorrect expressions
+Consider
+
+```
+"Bronte".take("Austen")
+```
+
+>  What do you think this expression should evaluate to?
+
+*This expression also can't be evaluated*
+
+Methods arguments also have types.
+
+Consider
+
+```
+"Bronte".take(1 + 2)
+```
+
+> Is it possible to run this expression?
+
+*A difficult question, as we haven't explained that arguments can be expressions*
+
+Method arguments are also expressions.  This means they can take in expressions such as `1 + 2`, as well as literal expressions such as `3`.
+
+```
+"Bronte".take(1 / 0)
+```
+
+> Is it possible to run this expression?
+*Yes (hopefully, they'll try to do so).  The result will be an error*
+
+> What is the difference between the error in `"Bronte".take("Austen")` and `"Bronte".take(1 / 0)`?
+*One is an error that prevents evaluation from happening, while the other is an error that happens during evaluation.  Try to avoid references to compile time and run time at this point.*
 
 ## Exercises
 
 See Creative Scala Chapter 2 for additional exercises
 
-
 1. What is an expression? What is a value? What is an object?
+
+1. Identify the values, objects and expressions in the following code.
+
+```
+"hello".take(1 + 2).toUpperCase
+```
+
+Which parts use method call syntax?  Which use infix notation?
+
+Can you write this completely in method call syntax?
 
 
 2. What is the type of the following expressions? What value do they evaluate to? Justify your answers.
@@ -225,11 +295,7 @@ See Creative Scala Chapter 2 for additional exercises
 `2/4`
 `1/0`
 
-
-3. Write code to draw three circles in a row (that is, one circle beside another circle beside another circle). Make the circles different colours.
-
-
-4. Write a program that draws four circles in a square pattern. Make each circle a different color.
+3.  What is the type of `1 / "Bronte"`?  How does it differ to the type of `1 / 0`?
 
 Did you make any errors writing this code? What strategies did you use to fix your errors?
 
