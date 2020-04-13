@@ -266,7 +266,7 @@ Consider
 "Bronte".take(1 + 2)
 ```
 
-> Is it possible to run this expression?
+> Is it possible to evaluate this expression?
 
 *A difficult question, as we haven't explained that arguments can be expressions*
 
@@ -276,10 +276,12 @@ Method arguments are also expressions.  This means they can take in expressions 
 "Bronte".take(1 / 0)
 ```
 
-> Is it possible to run this expression?
+> Is it possible to evaluate this expression?
+
 *Yes (hopefully, they'll try to do so).  The result will be an error*
 
 > What is the difference between the error in `"Bronte".take("Austen")` and `"Bronte".take(1 / 0)`?
+
 *One is an error that prevents evaluation from happening, while the other is an error that happens during evaluation.  Try to avoid references to compile time and run time at this point.*
 
 ## Exercises
