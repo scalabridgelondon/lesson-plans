@@ -62,7 +62,7 @@ Every expression has a **type**. Types describe a set of possible values that an
 
 > What could go wrong with basic arithmetic so that don't get a value? For example, can we always divide two integers.
 
-*Check they know what integers are first. This is a good chance to talk about integer arithmetic. The fact that integers are not automatically converted to doubles may be surprising to students who have exprience with Javascript or other similar languages. There is also division by zero which produces an error.*
+*Check they know what integers are first. This is a good chance to talk about integer arithmetic. The fact that integers are not automatically converted to doubles may be surprising to students who have experience with Javascript or other similar languages. There is also division by zero which produces an error.*
 
 A type is a property of an expression, not of a value. If you have used a "dynamically typed" language like Javascript or Python, what they call types apply to values and not to expressions. What they call types are what we call ***tags**. 
 
@@ -200,7 +200,7 @@ Consider
 
 > Can you write it using `.` and `()` instead of space?
 
-*They might need some help here.  Once they've finished, reiterate the definition of method call sytnax*
+*They might need some help here.  Once they've finished, reiterate the definition of method call syntax*
 
 
 > Is `"hello".take(3)` the same as `"hello" take 3`?  Are these the same as `"hello".take(1 + 2)`?
