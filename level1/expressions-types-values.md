@@ -288,7 +288,7 @@ Method arguments are also expressions.  This means they can take in expressions 
 
 See Creative Scala Chapter 2 for additional exercises
 
-1. What is an expression? What is a value? What is an object?
+1. What is an expression? What is a value?  What is a type?
 
 1. Identify the values, objects and expressions in the following code.
 
