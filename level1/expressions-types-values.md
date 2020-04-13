@@ -113,6 +113,7 @@ Consider:
 ```
 
 > Which of these is a literal expression?
+
 *Hopefully, you'll get the answer 2.  If not, ask the student to evaluate both expressions*
 
 
@@ -152,6 +153,7 @@ Methods can have arguments, also known as parameters
 In this example, `3` is an argument to the method `take`
 
 > What does this expression evaluate to?
+
 *Hopefully, they'll use the repl and get the answer "hel"*
 
 ```
@@ -159,10 +161,12 @@ In this example, `3` is an argument to the method `take`
 ```
 
 > What does this evaluate to?
+
 *Hopefully, they'll use the repl and get the answer "he"*
 *We're leading towards the idea that a method will evaluate to a different value depending on it's arguments*
 
 > Can you predict what `hello.take(4)` would evaluate to?  What is the meaning of the argument passed to `take`?
+
 *If they can't predict this, get them to evaluate it in the REPL*
 
 Method calls are expressions.  They evaluate to objects.  This means we can chain method calls together.
@@ -172,6 +176,7 @@ Method calls are expressions.  They evaluate to objects.  This means we can chai
 ```
 
 > What does this evaluate to?
+
 *This question is to check their understanding.  Don't go to deeply into models of execution (which happens first), at this point*
 
 ## Operator Notation in Scala
@@ -190,13 +195,16 @@ Consider
 "hello" take 3
 ```
 > Is this a valid Scala program?
+
 *If you get the answer 'no', encourage the student to evaluate this in the repl.  When the call succeeds, repeat the definition of infix notation*
 
 > Can you write it using `.` and `()` instead of space?
+
 *They might need some help here.  Once they've finished, reiterate the definition of method call sytnax*
 
 
 > Is `"hello".take(3)` the same as `"hello" take 3`?  Are these the same as `"hello".take(1 + 2)`?
+
 *`"hello".take(3)` and `"hello" take 3` are different notation for the same expression*
 *`"hello".take(1 + 2) is a different expression.  We're trying to get them to understand the difference between notation of expressions and expressions themselves*
 
@@ -207,12 +215,15 @@ We can call `1+2` using method syntax
 ```
 
 > Write `2 / 4` using method syntax
+
 *This is to confirm their understanding*
 
 > Write 1 + 2 + 3 using method syntax
+
 *This is to confirm their understanding of method chaining*
 
 > Can you write `hello.take(3).take(2)` in infix notation?
+
 *This is to confirm their understanding of method chaining*
 
 > Why would you use one notation over the other?
