@@ -56,7 +56,6 @@ So our model is this:
 
 Every expression has a **type**. Types describe a set of possible values that an expression can evaluate to. For example, the type of `1 + 1` is `Int`, which means that if `1 + 1` evaluates to a value it will be one of the approximately 4 billion values that the computer uses to represent integers.
 
-
 > How could an expression not evaluate to a value?
 
 *Difficult question as we haven't given the students enough information to come up with this on their own---but they might if they are creative. The answer is that if something goes wrong the expression may not evaluate to a value.*
