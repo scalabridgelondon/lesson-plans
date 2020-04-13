@@ -100,18 +100,116 @@ Here are three general problem solving strategies:
 
 ## Literals
 
+A literal is an expression that evaluates to itself.
+
+> Which of these is a literal expression?
+
+```
+2
+```
+
+```
+1 + 1
+```
+
+Here is an example of a floating point literal
+
+```
+0.1
+// res1: Double = 0.1
+```
+
+This literal is called a `Double`
+
+We can also write literal texy
+
+```
+"To be fond of dancing"
+```
+
+> What is the type of this literal?
+
+*Try and get your student to evaluate this expression in a repl and read the type*
+
 See Creative Scala Chapter 2
 
+Strings can also span several lines
+
+Suppose we want to write text that spans several lines.  We do this by using triple quotes.
+
+```
+```
+
+> What is the type of this literal?
+
+*Hopefully, they will evaluate it and find it is also a String*
+
+Strings are a sequence of characters.  Character literals are written in single quotes
+
+```
+'a'
+```
+
+Finally, booleans are true or false
+
+```
+true
+false
+```
 
 ## Objects and Method Calls
 
-See Creative Scala Chapter 2
+All values are objects.  An object is a grouping of data and operations on data.
+
+
+> Is this an object?
+
+```
+2
+```
+
+> Is this an object?
+
+```
+1 + 1
+```
+
+The operations on an object are called it's methods.
+
+For example `toUpperCase`
+
+```
+"Titan".toUpperCase
+```
+
+> Is "Titan.toUpperCase" an object?
+
+Method calls are expressions.  They evaluate to objects.  This means we can chain method valls together.
 
 
 ## Operator Notation in Scala
 
 See Creative Scala Chapter 2
 
+How do we explain `1 + 2`?
+
+## Types
+
+Types stop us from calling methods that don't exist.
+
+The type of an expression tells the compiler what methods can exist, and what they evaluate to.
+
+Here are some examples:
+
+```
+"Bronte" / "Austen"
+```
+
+> What is the type of this expression?
+
+*The expression doesn't have a type*
+
+> Come up with some examples of incorrect expressions
 
 ## Exercises
 
