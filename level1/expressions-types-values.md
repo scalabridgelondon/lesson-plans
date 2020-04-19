@@ -163,7 +163,7 @@ In this example, `3` is an argument to the method `take`
 > What does this evaluate to?
 
 *Hopefully, they'll use the repl and get the answer "he"*
-*We're leading towards the idea that a method will evaluate to a different value depending on it's arguments*
+*We're leading towards the idea that a method will evaluate to a different value depending on its arguments*
 
 > Can you predict what `hello.take(4)` would evaluate to?  What is the meaning of the argument passed to `take`?
 
