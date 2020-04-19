@@ -301,13 +301,17 @@ Which parts use method call syntax?  Which use infix notation?
 Can you write this completely in method call syntax?
 
 
-2. What is the type of the following expressions? What value do they evaluate to? Justify your answers.
+3. What is the type of the following expressions? What value do they evaluate to? Justify your answers.
 
 `4/2`
 `2/4`
 `1/0`
 
-3.  What is the type of `1 / "Bronte"`?  How does it differ to the type of `1 / 0`?
+4.  What is the type of `1 / "Bronte"`?  How does it differ to the type of `1 / 0`?
+
+5. Write code to draw three circles in a row (that is, one circle beside another circle beside another circle). Make the circles different colours.
+
+6. Write a program that draws four circles in a square pattern. Make each circle a different color.
 
 Did you make any errors writing this code? What strategies did you use to fix your errors?
 
