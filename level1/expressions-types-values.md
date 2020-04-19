@@ -68,7 +68,7 @@ A type is a property of an expression, not of a value. If you have used a "dynam
 
 > What is the type of `1/0`?
 
-*They should be able to reason about this (expressions have types) but could also check it empirically by running the program.  Discuss this, but don't try to correct their answer.  We haven't yet explained methods*
+*They should be able to reason about this (expressions have types) but could also check it empirically by running the program.  Students with no prior experience in programming may get stuck here.  Discuss this, but don't try to correct their answer.  They will make more progress when exploring methods*
 
 
 ## Problem Solving Strategies
