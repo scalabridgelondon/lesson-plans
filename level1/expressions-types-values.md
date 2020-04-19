@@ -128,9 +128,9 @@ Text is also a literal expression.
 *Hopefully, your student will say this has the type String*
 *If not, try and get them to evaluate this expression in a repl and read the type*
 
-## Objects and Method Calls
+## Method Calls
 
-The operations on an object are called it's methods.
+The operations on a value are called its methods.
 
 For example `toUpperCase` is an operation on strings.
 
@@ -169,7 +169,7 @@ In this example, `3` is an argument to the method `take`
 
 *If they can't predict this, get them to evaluate it in the REPL*
 
-Method calls are expressions.  They evaluate to objects.  This means we can chain method calls together.
+Method calls are expressions.  They evaluate to values.  This means we can chain method calls together.
 
 ```
 "hello".toUpperCase.take(3)
@@ -290,7 +290,7 @@ See Creative Scala Chapter 2 for additional exercises
 
 1. What is an expression? What is a value?  What is a type?
 
-1. Identify the values, objects and expressions in the following code.
+2. Identify the values and expressions in the following code.
 
 ```
 "hello".take(1 + 2).toUpperCase
