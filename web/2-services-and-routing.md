@@ -4,7 +4,6 @@
 
 - Learn how http4s does routing
 - Write a route to handle the close event
-- Write tests for a route
 
 
 ## Endpoints and Services
@@ -95,11 +94,7 @@ Let's return to our example route
 case GET -> Root / "api" / "tasks" => // stuff here
 ```
 
-We already know how the `->` pattern works. Now let's pull apart the path pattern (the bit on the right of `->`). If you look through the [implementation][dsl] you will find a case object called `Root` and a case class called `/`. So `Root / "api" / "tasks"` is constructing a pattern that matches the compound object (through the combined power of infix patterns and case class patterns).
-
-```scala
-/(/(Root, "api"), "tasks")
-```
+We already know how the `->` pattern works. Now let's pull apart the path pattern (the bit on the right of `->`). If you look through the [implementation][dsl] you will find a case object called `Root` and a case class called `/`. So `Root / "api" / "tasks"` is constructing a pattern that matches the compound object `/(/(Root, "api"), "tasks")` through the combined power of infix patterns and case class patterns.
 
 This is an unusually complex application of pattern matching, but it's not magic.
 
@@ -120,6 +115,12 @@ case Post -> Root / "api" / "task" / IntVar(id) / "close" => // stuff here
 ```
 
 There is no magic here. `IntVar` is just an object with an `unapply` method. We can define our own. In fact you will find one in the project already. It is called `IdVar` and lives in `todone.data` (in the `shared` project).
+
+
+## Closing Out
+
+Write a route that matches `POST` urls to paths like `/api/task/<id>/close` where `<id>` should be an `Id`. At this point it's fine to return an empty `Ok` response.
+
 
 
 [http4s]: https://http4s.org/
