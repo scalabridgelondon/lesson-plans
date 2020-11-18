@@ -106,5 +106,21 @@ This is an unusually complex application of pattern matching, but it's not magic
 
 ## http4s Route Syntax
 
+If the above explanation didn't suffice, here's a quick summary of the most important route patterns:
+
+- `<METHOD> -> <PATH>` matches a request as an HTTP method and path;
+- `Root / <PathElement> ...` matches a path as a sequence of elements;
+- extractor objects like `IntVar` to match specific elements of a path; and
+- `:?` and `+&` to extract parameters from the URL (which we won't use).
+
+A quick note about path elements and extractor objects. We've seen examples where we use string literals to match elements of a path. This is what we do in `Root / "api" / "tasks"`. We can use other types of patterns here. http4s provides a few useful ones. `IntVar`, for example, matches a path element that can be converted to an `Int`. We'd use it like so:
+
+```scala
+case Post -> Root / "api" / "task" / IntVar(id) / "close" => // stuff here
+```
+
+There is no magic here. `IntVar` is just an object with an `unapply` method. We can define our own. In fact you will find one in the project already. It is called `IdVar` and lives in `todone.data` (in the `shared` project).
+
+
 [http4s]: https://http4s.org/
 [dsl]: https://github.com/http4s/http4s/tree/main/dsl/src/main/scala/org/http4s/dsl/impl
