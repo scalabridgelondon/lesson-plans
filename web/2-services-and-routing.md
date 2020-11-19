@@ -121,7 +121,7 @@ There is no magic here. `IntVar` is just an object with an `unapply` method. We 
 
 Write a route that matches `POST` urls to paths like `/api/task/<id>/close` where `<id>` should be an `Id`. At this point it's fine to return an empty `Ok` response.
 
-
+We'll need to make more changes to get the whole system working, but this is progress.
 
 [http4s]: https://http4s.org/
 [dsl]: https://github.com/http4s/http4s/tree/main/dsl/src/main/scala/org/http4s/dsl/impl
