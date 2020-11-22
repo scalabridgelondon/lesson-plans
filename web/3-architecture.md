@@ -51,6 +51,6 @@ Once this is done you shoulhd have the application working as before but with th
 
 Now add a method to the controller to implement the `close` endpoint, and connect the endpoint to it. Note there is a `close` method on `Task` that you might want to use.
 
-When this is all done you will hopefully have a working functionality to mark a task as closed.
+When this is all done you will hopefully have working functionality to mark a task as closed.
 
 In these instructions we have deliberately gone light on detail. Part of the task here is to figure out the details yourself, make some mistakes, and learn from the experience. If you get stuck ask for help!
