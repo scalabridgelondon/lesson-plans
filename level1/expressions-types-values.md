@@ -62,13 +62,13 @@ Every expression has a **type**. Types describe a set of possible values that an
 
 > What could go wrong with basic arithmetic so that don't get a value? For example, can we always divide two integers.
 
-*Check they know what integers are first. This is a good chance to talk about integer arithmetic. The fact that integers are not automatically converted to doubles may be surprising to students who have exprience with Javascript or other similar languages. There is also division by zero which produces an error.*
+*Check they know what integers are first. This is a good chance to talk about integer arithmetic. The fact that integers are not automatically converted to doubles may be surprising to students who have experience with Javascript or other similar languages. There is also division by zero which produces an error.*
 
 A type is a property of an expression, not of a value. If you have used a "dynamically typed" language like Javascript or Python, what they call types apply to values and not to expressions. What they call types are what we call ***tags**. 
 
 > What is the type of `1/0`?
 
-*They should be able to reason about this (expressions have types) but could also check it empirically by running the program.*
+*They should be able to reason about this (expressions have types) but could also check it empirically by running the program.  Students with no prior experience in programming may get stuck here.  Discuss this, but don't try to correct their answer.  They will make more progress when exploring methods*
 
 
 ## Problem Solving Strategies
@@ -100,38 +100,218 @@ Here are three general problem solving strategies:
 
 ## Literals
 
-See Creative Scala Chapter 2
+A literal is an expression that evaluates to itself.
+
+Consider:
+
+```
+2
+```
+
+```
+1 + 1
+```
+
+> Which of these is a literal expression?
+
+*Hopefully, you'll get the answer 2.  If not, ask the student to evaluate both expressions*
 
 
-## Objects and Method Calls
+Text is also a literal expression.
 
-See Creative Scala Chapter 2
+```
+"To be fond of dancing"
+```
 
+> What is the type of this literal?  How did you find this out?
+
+*Hopefully, your student will say this has the type String*
+*If not, try and get them to evaluate this expression in a repl and read the type*
+
+## Method Calls
+
+The operations on a value are called its methods.
+
+For example `toUpperCase` is an operation on strings.
+
+Methods are written with a `.` in front of them and `()`.  This is known as method call syntax.
+
+```
+"titan".toUpperCase
+```
+
+> What does this expression evaluate to?  What type does it have?
+
+*Hopefully, your student will say this evaluates to "Titan" has the type String*
+
+Methods can have arguments, also known as parameters
+
+```
+"hello".take(3)
+```
+
+In this example, `3` is an argument to the method `take`
+
+> What does this expression evaluate to?
+
+*Hopefully, they'll use the repl and get the answer "hel"*
+
+```
+"hello".take(2)
+```
+
+> What does this evaluate to?
+
+*Hopefully, they'll use the repl and get the answer "he"*
+*We're leading towards the idea that a method will evaluate to a different value depending on its arguments*
+
+> Can you predict what `hello.take(4)` would evaluate to?  What is the meaning of the argument passed to `take`?
+
+*If they can't predict this, get them to evaluate it in the REPL*
+
+Method calls are expressions.  They evaluate to values.  This means we can chain method calls together.
+
+```
+"hello".toUpperCase.take(3)
+```
+
+> What does this evaluate to?
+
+*This question is to check their understanding.  Don't go to deeply into models of execution (which happens first), at this point*
 
 ## Operator Notation in Scala
 
-See Creative Scala Chapter 2
+A method with one argument can be called with spaces.  This is known as infix notation.
 
+You've already seen several of these
+
+```
+1 + 2
+```
+
+Consider
+
+```
+"hello" take 3
+```
+> Is this a valid Scala program?
+
+*If you get the answer 'no', encourage the student to evaluate this in the repl.  When the call succeeds, repeat the definition of infix notation*
+
+> Can you write it using `.` and `()` instead of space?
+
+*They might need some help here.  Once they've finished, reiterate the definition of method call syntax*
+
+
+> Is `"hello".take(3)` the same as `"hello" take 3`?  Are these the same as `"hello".take(1 + 2)`?
+
+*`"hello".take(3)` and `"hello" take 3` are different notation for the same expression*
+*`"hello".take(1 + 2) is a different expression.  We're trying to get them to understand the difference between notation of expressions and expressions themselves*
+
+We can call `1+2` using method syntax
+
+```
+1.+(2)
+```
+
+> Write `2 / 4` using method syntax
+
+*This is to confirm their understanding*
+
+> Write 1 + 2 + 3 using method syntax
+
+*This is to confirm their understanding of method chaining*
+
+> Can you write `hello.take(3).take(2)` in infix notation?
+
+*This is to confirm their understanding of method chaining*
+
+> Why would you use one notation over the other?
+
+*If this is a group, try and get them to discuss which style they prefer*
+
+Programs are meant to be read by people, as well as evaluated by computers.  `1 + 2` tends to be easier to read than `1.+(2)`
+
+## Types
+
+Types stop us from calling methods that don't exist.
+
+The type of an expression tells Scala what methods can exist, and what they evaluate to.
+
+Here are some examples:
+
+```
+"Bronte" / "Austen"
+```
+
+> What is the type of this expression?  What do you think this expression will evaluate to?
+
+*The expression doesn't have a type. By the same token, it can't be evaluated*
+
+Consider
+
+```
+"Bronte".take("Austen")
+```
+
+>  What do you think this expression should evaluate to?
+
+*This expression also can't be evaluated*
+
+Methods arguments also have types.
+
+Consider
+
+```
+"Bronte".take(1 + 2)
+```
+
+> Is it possible to evaluate this expression?
+
+*A difficult question, as we haven't explained that arguments can be expressions*
+
+Method arguments are also expressions.  This means they can take in expressions such as `1 + 2`, as well as literal expressions such as `3`.
+
+```
+"Bronte".take(1 / 0)
+```
+
+> Is it possible to evaluate this expression?
+
+*Yes (hopefully, they'll try to do so).  The result will be an error*
+
+> What is the difference between the error in `"Bronte".take("Austen")` and `"Bronte".take(1 / 0)`?
+
+*One is an error that prevents evaluation from happening, while the other is an error that happens during evaluation.  Try to avoid references to compile time and run time at this point.*
 
 ## Exercises
 
 See Creative Scala Chapter 2 for additional exercises
 
+1. What is an expression? What is a value?  What is a type?
 
-1. What is an expression? What is a value? What is an object?
+2. Identify the values and expressions in the following code.
+
+```
+"hello".take(1 + 2).toUpperCase
+```
+
+Which parts use method call syntax?  Which use infix notation?
+
+Can you write this completely in method call syntax?
 
 
-2. What is the type of the following expressions? What value do they evaluate to? Justify your answers.
+3. What is the type of the following expressions? What value do they evaluate to? Justify your answers.
 
 `4/2`
 `2/4`
 `1/0`
 
+4.  What is the type of `1 / "Bronte"`?  How does it differ to the type of `1 / 0`?
 
-3. Write code to draw three circles in a row (that is, one circle beside another circle beside another circle). Make the circles different colours.
+5. Write code to draw three circles in a row (that is, one circle beside another circle beside another circle). Make the circles different colours.
 
-
-4. Write a program that draws four circles in a square pattern. Make each circle a different color.
+6. Write a program that draws four circles in a square pattern. Make each circle a different color.
 
 Did you make any errors writing this code? What strategies did you use to fix your errors?
 
