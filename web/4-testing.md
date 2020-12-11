@@ -24,12 +24,60 @@ To write tests we need to understand:
 
 Let's address each in turn.
 
-By convention tests go under the directory `src/test/scala/`. The directory structure within that directory should mirror the structure in `src/main/scala`. So, for example, we would place a test for `src/main/scala/todone/ToDoneService.scala` in the directory `src/test/scala/todone/`. By convention we take the base name of the file we're testing and append `Suite`. So the tests for `ToDoneService.scala` go in the file `ToDoneServiceSuite.scala`. In the terminology that grown around testing a test case tests a particular condition and a test suite is a collection of test cases.
+### Test File Structure
 
-We will write our unit tests using two libraries: [MUnit][munit] and [ScalaCheck][scalacheck].
+By convention tests go under the directory `src/test/scala/`. The directory structure within that directory should mirror the structure in `src/main/scala`. So, for example, we would place a test for `src/main/scala/todone/ToDoneService.scala` in the directory `src/test/scala/todone/`. By convention we take the base name of the file we're testing and append `Suite`. So the tests for `ToDoneService.scala` go in the file `ToDoneServiceSuite.scala`. In the terminology that grown around testing a *test case* tests a particular condition and a *test suite* is a collection of test cases.
+
+### Writing Tests with MUnit
+
+We will write our unit tests using two libraries: [MUnit][munit] and [ScalaCheck][scalacheck]. We'll start with MUnit, and to keep things as simple as possible we will learn about MUnit before we learn about testing http4s applications. 
+
+Here's a test suite which contains one test case.
+
+```scala
+class PalindromeSuite extends munit.FunSuite {
+  test("tacocat is a palindrome") {
+    val theCat = "tacocat"
+    assertEquals(theCat, theCat.reverse)
+  }
+}
+```
+
+Let's break it down.
+
+The first line
+
+```scala
+class PalindromeSuite extends munit.FunSuite
+```
+
+declares the test suite.
+
+The next line
+
+```scala
+  test("tacocat is a palindrome")
+```
+
+declares a test case within the test suite. The `String` name should describe the condtion we are checking. Within the body of the test case we write the code to check that condition. Here we are testing that "tacocat" is a palindrome, meaning it is the same backwards and forwards.
+
+The check is done with the line
+
+```scala
+    assertEquals(theCat, theCat.reverse)
+```
+
+`assertEquals` is a method defined by MUnit. Should the condtion fail MUnit will generate useful information for us to help track down the problem. MUnit provides a number of [different assertions][munit-assertions] for different cases.
+
+### Running Tests
+
+To run tests we use the `test` command in sbt. Run that command now. You should see output indicating that the test we just created has passed.
+
+It's useful to see what happens when a test case fails. Create a new test case that checks if "tabbycat" is a palindrome. As this is not the case this test case will fail. Run the `test` command to check that it does fail and see what the output looks like.
 
 
-## Testinng http4s Routes
+## Testing http4s Routes
 
 [munit]: https://scalameta.org/munit/
 [scalacheck]: http://www.scalacheck.org/
+[munit-assertions]: https://scalameta.org/munit/docs/assertions.html
