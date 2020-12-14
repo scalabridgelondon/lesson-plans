@@ -3,8 +3,8 @@
 ## Goals
 
 - Learn the value of writing unit tests
+- Learn how to write unit tests using MUnit
 - Learn how to test http4s endpoints
-- Learn how to write tests using MUnit and ScalaCheck
 
 
 ## The Case for Testing
@@ -30,7 +30,7 @@ By convention tests go under the directory `src/test/scala/`. The directory stru
 
 ### Writing Tests with MUnit
 
-We will write our unit tests using two libraries: [MUnit][munit] and [ScalaCheck][scalacheck]. We'll start with MUnit, and to keep things as simple as possible we will learn about MUnit before we learn about testing http4s applications. 
+We will write our unit tests using [MUnit][munit]. To keep things as simple as possible we will learn about MUnit before we learn about testing http4s applications. 
 
 Here's a test suite which contains one test case.
 
@@ -77,6 +77,8 @@ It's useful to see what happens when a test case fails. Create a new test case t
 
 
 ## Testing http4s Routes
+
+A big part of testing our web application will be testing our routes. In http4s a route is essentially a function from a `Request` to an `IO[Option[Response]]`.
 
 [munit]: https://scalameta.org/munit/
 [scalacheck]: http://www.scalacheck.org/
