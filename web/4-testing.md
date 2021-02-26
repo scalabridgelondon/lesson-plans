@@ -80,6 +80,8 @@ It's useful to see what happens when a test case fails. Create a new test case t
 
 A big part of testing our web application will be testing our routes. In http4s a route is essentially a function from a `Request` to an `IO[Option[Response]]`.
 
+**To be completed**
+
 [munit]: https://scalameta.org/munit/
 [scalacheck]: http://www.scalacheck.org/
 [munit-assertions]: https://scalameta.org/munit/docs/assertions.html

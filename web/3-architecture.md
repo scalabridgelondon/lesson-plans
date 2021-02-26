@@ -47,7 +47,7 @@ Your task now is to fill out the model and controller:
 2. Add a method to the controller that gets a `Tasks` from the data in the model.
 3. Hook up the `tasks` endpoint in the `ToDoneService` (`Root / "api" / "tasks") so it calls the method you just created on the controller.
 
-Once this is done you shoulhd have the application working as before but with the new architecture in place.
+Once this is done you should have the application working as before but with the new architecture in place.
 
 Now add a method to the controller to implement the `close` endpoint, and connect the endpoint to it. Note there is a `close` method on `Task` that you might want to use.
 

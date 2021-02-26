@@ -2,13 +2,6 @@
 
 ## Goals
 
-The goal of this course is to:
-
-- reinforce Scala concepts previously learned;
-- introduce core concepts in web programming;
-- introduce basic programming practices such as testing and tool usage;
-- introduce basic concepts in code architecture.
-
 The goal of this section is to get the project setup and ready to start working on.
 
 
