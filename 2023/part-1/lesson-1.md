@@ -71,6 +71,8 @@ About 15 minutes before the session ends the leader should stop everyone and do 
 * Does anyone feel they're in the wrong group (e.g. maybe they have much more experience than the other students)? If so, this needs to be communicated to the wider groups so groups can be shuffled.
 * Is there anything else we can improve for next time? For example, the group may choose to do some reading before the next session. This may need to be communicated to the wider group depending on what it is.
 
+Ambitious groups will record their learnings and reflections in a shared document, perhaps on Github.
+
 [creative-scala]: https://www.creativescala.org/creative-scala/
 [part-one]: https://www.creativescala.org/creative-scala/part-one-introduction.html
 [students]: https://www.scalabridgelondon.org/students/
